@@ -9,6 +9,10 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
     QSharedMemory sharedMemory;
 
+    QCoreApplication::setApplicationName("FYI video player");
+    QGuiApplication::setApplicationDisplayName(QCoreApplication::applicationName());
+    QCoreApplication::setApplicationVersion(QT_VERSION_STR);
+
     // https://stackoverflow.com/questions/34445164/qt5-preventing-another-instance-of-the-application-doesnt-work-anymore
     sharedMemory.setKey("fyi-memory-key");
     if (sharedMemory.create(1) == false)

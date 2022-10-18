@@ -8,5 +8,5 @@ else {
 Set-Location build
 cmake ..
 cmake --build .
-./Debug/FYIApp.exe
+# ./Debug/FYIApp.exe
 Set-Location ..
