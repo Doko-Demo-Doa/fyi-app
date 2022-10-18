@@ -1,6 +1,8 @@
 #include "mainwindow.h"
 #include "video_player.h"
 
+#include <Windows.h>
+
 #include <QApplication>
 #include <QtWidgets/QDesktopWidget>
 #include <QSharedMemory>
@@ -44,7 +46,14 @@ int main(int argc, char *argv[])
 
     const QRect availableSpace = QApplication::desktop()->availableGeometry(&player);
     player.resize(availableSpace.width() * 0.5, availableSpace.height() / 3);
-    player.show();
 
-    return a.exec();
+    // https://learn.microsoft.com/vi-vn/windows/win32/api/winbase/nf-winbase-setthreadexecutionstate?redirectedfrom=MSDN
+    SetThreadExecutionState(ES_CONTINUOUS | ES_SYSTEM_REQUIRED | ES_AWAYMODE_REQUIRED);
+    player.show();
+    int resp = a.exec();
+
+    // Reset the state and allow the system to sleep normally:
+    SetThreadExecutionState(ES_CONTINUOUS);
+
+    return resp;
 }

@@ -7,6 +7,6 @@ else {
 }
 Set-Location build
 cmake ..
-cmake --build .
+cmake --build . --config Release
 ./Debug/FYIApp.exe
 Set-Location ..

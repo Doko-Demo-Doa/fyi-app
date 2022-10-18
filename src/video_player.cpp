@@ -52,7 +52,7 @@ VideoPlayer::~VideoPlayer()
 
 void VideoPlayer::openFile()
 {
-  QFileDialog fileDialog; // TODO
+  QFileDialog fileDialog(this);
   fileDialog.setAcceptMode(QFileDialog::AcceptOpen);
   fileDialog.setWindowTitle("Open video file");
   QStringList supportedMimeTypes = m_mediaPlayer->supportedMimeTypes();
@@ -73,6 +73,7 @@ void VideoPlayer::setUrl(const QUrl &url)
   setWindowFilePath(url.isLocalFile() ? url.toLocalFile() : QString());
   m_mediaPlayer->setMedia(url);
   m_playButton->setEnabled(true);
+  m_mediaPlayer->play();
 }
 
 void VideoPlayer::play()
