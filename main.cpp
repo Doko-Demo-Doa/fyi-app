@@ -46,5 +46,5 @@ int main(int argc, char *argv[])
     player.resize(availableSpace.width() * 0.5, availableSpace.height() / 3);
     player.show();
 
-     return a.exec();
+    return a.exec();
 }
